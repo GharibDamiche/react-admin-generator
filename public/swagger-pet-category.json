@@ -1,0 +1,99 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Pets"
+  },
+  "tags": [
+    {
+      "name": "Pet"
+    }
+  ],
+  "paths": {
+    "/pet": {
+      "post": {
+        "tags": ["Pet"],
+        "summary": "Add a new pet to the store",
+        "description": "",
+        "operationId": "create_pet",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Pet object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          }
+        }
+      }
+    },
+    "/pet/{id}": {
+      "get": {
+        "tags": ["Pet"],
+        "summary": "Find pet by ID",
+        "description": "Returns a single pet",
+        "operationId": "get_one_pet",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of pet to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": { "$ref": "#/definitions/Pet" }
+          },
+          "400": { "description": "Invalid ID supplied" },
+          "404": { "description": "Pet not found" }
+        }
+      }
+    },
+    "/pet/all": {
+      "get": {
+        "tags": ["Pet"],
+        "summary": "Get pets",
+        "description": "Get all pets",
+        "operationId": "get_list_pet",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Pet" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Pet": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer", "format": "int64" },
+        "name": { "type": "string", "example": "napoleon" },
+        "breed": { "type": "string", "example": "bulldog" },
+        "category": { "type": "string", "example": "dog" }
+      }
+    }
+  },
+  "host": "k486w.csb.app",
+  "basePath": "/",
+  "schemes": ["https"]
+}
