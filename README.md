@@ -1,2 +1,2 @@
 # react-admin-generator
-Created with CodeSandbox
+Generate front applicaton based on React Admin, from custom OpenApi specification
